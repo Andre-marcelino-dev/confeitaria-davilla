@@ -16,6 +16,10 @@ Route::get('/cardapio',[CardapioController::class, 'cardapio'])->name('cardapio.
 
 Route::get('/cardapio/categoria/{id}', [CardapioController::class, 'cardapio'])->name('cardapio.categoria');
 
+/**Submenu de produto */
+
+Route::get('/cardapio/produto/{slug}', [CardapioController::class, 'showProduto'])->name('cardapio.produto');
+
 
 Route::get('/pedidos',[PedidosController::class, 'pedidos'])->name('pedidos');
 Route::get('/regiao',[RegiaoController::class, 'regiao'])->name('regiao.index');
