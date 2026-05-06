@@ -1,5 +1,6 @@
 <?php
 
+
 use App\Http\Controllers\CardapioController;
 use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\HomeController;
@@ -19,6 +20,8 @@ Route::get('/cardapio/categoria/{id}', [CardapioController::class, 'cardapio'])-
 /**Submenu de produto */
 
 Route::get('/cardapio/produto/{slug}', [CardapioController::class, 'showProduto'])->name('cardapio.produto');
+
+
 
 
 Route::get('/pedidos',[PedidosController::class, 'pedidos'])->name('pedidos');
