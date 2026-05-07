@@ -39,7 +39,7 @@
                         <div class="inner-box">
                             <div class="image-box">
 
-                                <figure class="image"><img src="{{ asset('davilla/gallery-davilla/6-5.jpg') }}" alt=""></figure>
+                                
                                 <figure class="image"><img src="{{asset('davilla/images/'. $linha->foto_produto)}}" alt=""></figure>
 
                                 <div class="hover-effect">

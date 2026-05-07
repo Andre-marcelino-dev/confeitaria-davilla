@@ -59,6 +59,28 @@ class CardapioController extends Controller
         return view('site.produto.produto', compact('produto','listaProduto','produtosRelacionados'));
     }
 
+
+    public function filtroCategoria($slug)
+{
+    // Categorias para as tags
+    $filtroCategoria = Categoria::where('status_categoria', 'ATIVO')
+        ->orderBy('ordem_categoria')
+        ->get();
+
+    // Busca categoria pelo slug
+    $categoria = Categoria::where('slug_produto', $slug)
+        ->firstOrFail();
+
+    // Produtos da categoria
+    $listaProduto = Produto::with('CategoriaProduto')
+        ->where('status_produto', 'ATIVO')
+        ->where('id_categoria', $categoria->id)
+        ->orderBy('ordem_produto')
+        ->get();
+
+    return view('site.cardapio.cardapio', compact('filtroCategoria', 'listaProduto'));
+}
+
     
 
         

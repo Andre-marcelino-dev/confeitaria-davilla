@@ -246,7 +246,7 @@
                                 <h3 class="widget-title">Tags</h3>
                                 <ul class="tag-list clearfix">
                                     @foreach ($listaProduto as $tags )
-                                    <li><a href="#">{{ $tags->nome_produto }}</a></li>
+                                    <li><a href="{{ route('cardapio.produto',$tags->slug_produto) }}">{{ $tags->nome_produto }}</a></li>
                                     
                                     @endforeach
                                  
