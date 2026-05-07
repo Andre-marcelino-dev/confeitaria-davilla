@@ -21,9 +21,11 @@ Route::get('/cardapio/categoria/{id}', [CardapioController::class, 'cardapio'])-
 
 Route::get('/cardapio/produto/{slug}', [CardapioController::class, 'showProduto'])->name('cardapio.produto');
 
+Route::get('/cardapio/categoria/{id}', [CardapioController::class, 'show'])
+    ->name('cardapio.categoria');
 
 
-
+    
 Route::get('/pedidos',[PedidosController::class, 'pedidos'])->name('pedidos');
 Route::get('/regiao',[RegiaoController::class, 'regiao'])->name('regiao.index');
 
