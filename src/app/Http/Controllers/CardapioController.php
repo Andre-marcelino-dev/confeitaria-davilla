@@ -72,6 +72,9 @@ public function show($id)
     $produtosRelacionados = Produto::with('CategoriaProduto')
         ->where('status_produto', 'ATIVO')
         ->where('id_categoria', $produto->id_categoria)
+        ->where('id_produto', '!=', $produto->id_produto)
+
+        ->limit(3)
         ->orderBy('ordem_produto')
         ->get();
 
