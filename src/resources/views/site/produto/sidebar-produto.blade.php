@@ -25,8 +25,8 @@
                                             <span class="fa fa-star"></span>
                                         </div>
                                         <a class="reviews" href="#">(2 Customer Reviews)</a>
-                                        <div class="item-price">{{ $produto->valor_produto }}</div>
-                                        <div class="text">{{ $produto->descricao_produto }}</div>
+                                        <div class="text">{{illuminate\Support\Str::limit($produto->descricao_produto, 100)}}</div>
+                                        <div class="price">R$ {{ number_format($produto->valor_produto, 2, ',', '.') }}</div>
                                     </div>
 
                                     <div class="other-options clearfix">
@@ -66,7 +66,7 @@
 
                                     <!--Tab-->
                                     <div class="tab active-tab" id="prod-reviews">
-                                        <h2 class="title">2 comentários para Bolo de aniversário</h2>
+                                        <h2 class="title">2 Avaliações do {{ $produto->nome_produto }}</h2>
                                         <!--Reviews Container-->
                                         <div class="comments-area">
                                             <!--Comment Box-->
@@ -179,7 +179,8 @@
                                         <div class="lower-content">
                                             <h4 class="name"><a href="{{ asset('davilla/images/'.$produto->foto_produto) }}">{{ $produto->nome_produto }}</a></h4>
                                             <div class="rating"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star light"></span></div>
-                                            <div class="price">{{ $produto->valor_produto }}</div>
+                                            <div class="text">{{illuminate\Support\Str::limit($produto->descricao_produto, 100)}}</div>
+                                        <div class="price">R$ {{ number_format($produto->valor_produto, 2, ',', '.') }}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -211,14 +212,14 @@
                         <!-- Cart Widget -->
                         <div class="sidebar-widget cart-widget">
                             <div class="widget-content">
-                                <h3 class="widget-title">Cart</h3>
+                                <h3 class="widget-title">Carrinho</h3>
 
                                 <div class="shopping-cart">
                                     <ul class="shopping-cart-items">
                                         <li class="cart-item">
                                             <img src="{{ asset('davilla/images/'. $produto->foto_produto) }}" alt="#" class="thumb" />
-                                            <span class="item-name">Birthday Cake</span>
-                                            <span class="item-quantity">1 x <span class="item-amount">{{$produto->valor_produto}}</span></span>
+                                            <span class="item-name">{{ $produto->nome_produto }}</span>
+                                            <span class="item-quantity">1 x <span class="item-amount">R$ {{ number_format($produto->valor_produto, 2, ',', '.') }}</span></span>
                                             <a href="shop-single.html" class="product-detail"></a>
                                             <button class="remove-item"><span class="fa fa-times"></span></button>
                                         </li>
@@ -226,7 +227,7 @@
                                         <li class="cart-item">
                                             <img src="{{ asset('davilla/images/'. $produto->foto_produto) }}" alt="#" class="thumb" />
                                             <span class="item-name">French Macaroon</span>
-                                            <span class="item-quantity">1 x <span class="item-amount">{{$produto->valor_produto}}</span></span>
+                                            <span class="item-quantity">1 x <span class="item-amount">R$ {{ number_format($produto->valor_produto, 2, ',', '.') }}</span></span>
                                             <a href="shop-single.html" class="product-detail"></a>
                                             <button class="remove-item"><span class="fa fa-times"></span></button>
                                         </li>
