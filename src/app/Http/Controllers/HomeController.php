@@ -27,12 +27,13 @@ class HomeController extends Controller
           // Todos produtos
     $listaProduto = Produto::with('CategoriaProduto')
         ->where('status_produto', 'ATIVO')
-        ->orderBy('ordem_produto')
+        ->inRandomOrder()
+        ->limit(8)
         ->get();
 
 
         $listaBanner = Banner::where('status_banner', 'ATIVO')
-        ->orderBy('ordem_banner')
+        ->inRandomOrder()
         ->get();
 
  

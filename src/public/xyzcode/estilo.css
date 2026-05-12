@@ -54,3 +54,12 @@
     z-index: 999999;
    padding: 30px;
 }
+
+
+
+.pricing-table .image-box .image img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+
+}
