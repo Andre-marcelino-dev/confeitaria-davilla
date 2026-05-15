@@ -1,13 +1,18 @@
 <?php
 
 
-use App\Http\Controllers\CardapioController;
-use App\Http\Controllers\ContatoController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PedidosController;
-use App\Http\Controllers\RegiaoController;
-use App\Http\Controllers\SobreController;
+use App\Http\Controllers\site\CardapioController;
+use App\Http\Controllers\site\ContatoController;
+use App\Http\Controllers\site\HomeController;
+use App\Http\Controllers\site\PedidosController;
+use App\Http\Controllers\site\RegiaoController;
+use App\Http\Controllers\site\SobreController;
+use App\Http\Controllers\admin\CategoriaController;
 use Illuminate\Support\Facades\Route;
+
+
+
+use App\Http\Controllers\admin\DashController;
 
 Route::get('/',[HomeController::class, 'home'])->name('home');
 Route::get('/sobre',[SobreController::class, 'sobre'])->name('sobre');
@@ -34,3 +39,16 @@ Route::get('/regiao/area/{id}', [RegiaoController::class, 'show'])->name('regiao
  
 Route::get('/contato',[ContatoController::class, 'contato'])->name('contato');
 
+
+
+Route::prefix('admin')->name('admin.')->group(function () {
+
+    Route::get('/', [DashController::class, 'index'])
+        ->name('dash');
+
+
+        //Categorias
+        Route::get('/categoria', [CategoriaController::class, 'index'])
+            ->name('categoria');
+            
+});

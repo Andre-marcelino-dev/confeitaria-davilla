@@ -1,9 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\site;
 use App\Models\Categoria;
 use App\Models\Produto;
 use App\Models\Banner;
+use App\Models\Kits;
+use App\Http\Controllers\Controller;
+
 
 use Illuminate\Http\Request;
 
@@ -36,8 +39,14 @@ class HomeController extends Controller
         ->inRandomOrder()
         ->get();
 
- 
+         $kitis = Kits::with('ProdutosKit.produto')
+        
+        ->get();
 
-        return view('site.home.home', compact('filtroCategoria','listaProduto', 'listaBanner'));
+        // dd($kitis  );
+
+        
+
+        return view('site.home.home', compact('filtroCategoria','listaProduto', 'listaBanner','kitis'));
     }
 }

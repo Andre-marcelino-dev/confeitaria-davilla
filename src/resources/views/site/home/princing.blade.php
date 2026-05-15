@@ -7,7 +7,7 @@
             </div>
 
             <div class="row">
-                @foreach ($listaProduto->shuffle()->take(4) as $linha)
+                @foreach ($kitis  as $linha)
                 <!-- Pricing Table -->
                 <div class="pricing-table tagged col-xl-3 col-lg-6 col-md-6 col-sm-12">
                     <div class="inner-box">
@@ -17,11 +17,11 @@
                             <svg viewBox="0 0 67.3 67.3">
                                 <path class="st0" d="M40.7,2.8c0.4,0,0.7,0,1.1,0.1c1.3,0.4,2.4,1.5,3.6,2.6c0.9,1,1.9,1.8,3,2.5c1.2,0.6,2.5,1.1,3.8,1.4 c1.6,0.4,3.1,0.8,4,1.7s1.3,2.4,1.7,4c0.3,1.3,0.7,2.5,1.3,3.7c0.7,1.1,1.6,2.1,2.6,3c1.2,1.2,2.3,2.2,2.6,3.5 c0.3,1.3-0.1,2.7-0.5,4.3c-0.4,1.3-0.6,2.6-0.7,3.9c0.1,1.2,0.3,2.5,0.6,3.7v0.1v0.1l0,0l0.5,1.9h0.1c0.2,0.9,0.1,1.7-0.1,2.6 c-0.3,1.3-1.4,2.4-2.6,3.6l0,0c-1,0.9-1.8,1.9-2.5,3c-0.6,1.2-1.1,2.5-1.4,3.8c-0.4,1.6-0.8,3.1-1.7,4s-2.5,1.2-4.1,1.7 c-1.3,0.3-2.5,0.7-3.7,1.3c-1.1,0.7-2.1,1.6-3,2.6c-1.2,1.2-2.2,2.3-3.5,2.6c-0.3,0.1-0.7,0.1-1,0.1c-1.1-0.1-2.2-0.3-3.3-0.6 c-1.3-0.4-2.6-0.6-3.9-0.7c-1.3,0.1-2.6,0.3-3.8,0.7c-1.1,0.3-2.2,0.6-3.3,0.6c-0.4,0-0.7,0-1.1-0.1c-1.3-0.4-2.4-1.5-3.6-2.6 c-0.9-1-1.9-1.8-3-2.5c-1.2-0.6-2.5-1.1-3.8-1.4c-1.6-0.4-3-0.8-4-1.7c-0.9-0.9-1.3-2.4-1.8-4c-0.3-1.3-0.7-2.5-1.3-3.7 c-0.7-1.1-1.6-2.1-2.6-3c-1.2-1.2-2.3-2.2-2.6-3.5s0.1-2.7,0.5-4.3c0.4-1.3,0.6-2.6,0.7-4c-0.1-1.3-0.3-2.6-0.7-3.8 c-0.4-1.6-0.8-3.1-0.5-4.4c0.4-1.3,1.5-2.4,2.6-3.6c1-0.9,1.8-1.9,2.5-3c0.6-1.2,1.1-2.5,1.4-3.8c0.4-1.6,0.8-3.1,1.7-4 s2.4-1.2,4-1.7c1.3-0.3,2.5-0.7,3.7-1.3c1.1-0.7,2.1-1.6,3-2.6c1.2-1.2,2.3-2.3,3.5-2.6c0.3-0.1,0.7-0.1,1-0.1 c1.1,0.1,2.2,0.3,3.3,0.6c1.3,0.4,2.6,0.6,4,0.7c1.3-0.1,2.6-0.3,3.8-0.7C38.5,3,39.6,2.8,40.7,2.8L40.7,2.8"></path>
                             </svg>
-                            <h5>{{ $linha->destaque_produto == 'SIM' ? 'off' : '' }}</h5>
+                            <!-- <h5>{{ $linha->destaque_produto == 'SIM' ? 'off' : '' }}</h5> -->
                         </div>
 
                         <div class="image-box">
-                            <figure class="image"><img src="{{ asset("davilla/images/produto/$linha->slug_produto.png") }}" alt="{{ $linha->nome_produto }}"></figure>
+                            <figure class="image"><img src="" alt=""></figure>
                         </div>
                         
                         <div class="pricing-svg">
@@ -30,21 +30,11 @@
                             </svg>
                         </div>
                         <div class="title-box">
-                            <h3>{{ $linha->nome_produto }}</h3>
+                            <h3> {{ $linha->nome_kit }}</h3>
                         </div>
-                        <div class="price-box">
-                            <div class="price"><sup>R$</sup>{{ $linha->valor_produto }}</div>
-                            <span class="title">{{ $linha->nome_produto }}</span>
-                        </div>
-                        <div class="table-content">
-                            <ul>
-                                <li><span>{{ $linha->descricao_produto }}</span></li>
-                                <li><span>{{ $linha->tamanho_produto }}</span></li>
-
-                            </ul>
-                        </div>
+ 
                         <div class="table-footer">
-                            <a href="{{ route('cardapio.produto', $linha->slug_produto) }}" class="theme-btn btn-style-two regular"><span></span>Reserva<span></span></a>
+                             
                         </div>
                     </div>
                 </div>
