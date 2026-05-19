@@ -1,10 +1,10 @@
 @extends('layout.admin')
 
-@section('title', 'Categoria | Confeitaria Dashboard')
+@section('title', 'Produto | Confeitaria Dashboard')
 
-@section('pg-titulo', 'Categoria')
+@section('pg-titulo', 'Produto')
 
-@section('link-topo', 'Categoria')
+@section('link-topo', 'Produto')
 
 @section('content')
 
@@ -16,11 +16,11 @@
 
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Gerenciamento de Categorias</h3>
+          <h3 class="card-title">Gerenciamento de Produtos</h3>
           <div class="card-tools">
             <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#modalNovaCategoria">
               <i class="bi bi-plus-circle"></i>
-              Nova Categoria
+              Novo Produto
             </button>
           </div>
         </div>
@@ -29,7 +29,7 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th style="width: 40px">Ordem</th>
+                <th style="width: 40px">Foto</th>
                 <th>Nome</th>
                 <th>Descrição</th>
                 <th>Status</th>
@@ -37,13 +37,13 @@
               </tr>
             </thead>
             <tbody>
-              @forelse($categorias as $linha)
+              @forelse(  $listaProduto as $linha)
               <tr class="align-middle">
-                <td>{{ $linha->ordem_categoria }}</td>
-                <td>{{ $linha->nome_categoria }}</td>
-                <td>{{ $linha->descricao_categoria }}</td>
+                <td><img src="{{ asset('davilla/images/'. $linha->foto_produto) }}" width="80"></td>
+                <td>{{ $linha->nome_produto }}</td>
+                <td>{{ $linha->descricao_produto  }}</td>
                 <td>
-                  @if($linha->status_categoria === 'ATIVO')
+                  @if($linha->status_produto === 'ATIVO')
                   <span class="badge text-bg-success">Ativo</span>
                   @else
                   <span class="badge text-bg-danger">Inativo</span>
@@ -51,7 +51,7 @@
                 </td>
                 <td>
 
-                  <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditarCategoria{{ $linha->id_categoria }}">
+                  <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditarCategoria{{ $linha->id_produto }}">
                     <i class="bi bi-pencil"></i>
                   </button>
 
@@ -63,7 +63,7 @@
               </tr>
               @empty
               <tr>
-                <td>Nenhuma categoria cadastrada</td>
+                <td>Nenhuma produto cadastrada</td>
               </tr>
               @endforelse
 
@@ -79,6 +79,6 @@
 </div>
 
 
-@include('admin.categoria.modal.criar')
+@include('admin.produto.modal.criar')
 
 @endsection

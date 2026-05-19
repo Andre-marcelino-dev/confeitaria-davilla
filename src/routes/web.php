@@ -7,12 +7,13 @@ use App\Http\Controllers\site\HomeController;
 use App\Http\Controllers\site\PedidosController;
 use App\Http\Controllers\site\RegiaoController;
 use App\Http\Controllers\site\SobreController;
-use App\Http\Controllers\admin\CategoriaController;
 use Illuminate\Support\Facades\Route;
 
 
 
 use App\Http\Controllers\admin\DashController;
+use App\Http\Controllers\admin\CategoriaController;
+use App\Http\Controllers\admin\ProdutoController;
 
 Route::get('/',[HomeController::class, 'home'])->name('home');
 Route::get('/sobre',[SobreController::class, 'sobre'])->name('sobre');
@@ -50,5 +51,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         //Categorias
         Route::get('/categoria', [CategoriaController::class, 'index'])
             ->name('categoria');
+
+        //Categorias
+        Route::get('/produto', [ProdutoController::class, 'index'])
+            ->name('produto');
             
 });
