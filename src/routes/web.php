@@ -24,9 +24,35 @@ Route::get('/regiao/area/{id}', [RegiaoController::class, 'show'])->name('regiao
 Route::get('/contato',[ContatoController::class, 'contato'])->name('contato');
 
 Route::prefix('admin')->name('admin.')->group(function () {
+
     Route::get('/', [DashController::class, 'index'])->name('dash');
     Route::get('/categoria', [CategoriaController::class, 'index'])->name('categoria');
     Route::post('/categoria', [CategoriaController::class, 'store'])->name('categoria.store');
     Route::patch('/categoria/{id}/status', [CategoriaController::class, 'alterarStatus'])->name('categoria.status');
     Route::get('/produto', [ProdutoController::class, 'index'])->name('produto');
+
+    Route::get('/', [DashController::class, 'index'])
+        ->name('dash');
+
+
+        //Categorias
+        Route::get('/categoria', [CategoriaController::class, 'index'])->name('categoria');
+        Route::post('/categoria', [CategoriaController::class, 'store'])->name('categoria.store');
+        Route::patch('/categoria/{id}/desativar', [CategoriaController::class, 'desativar'])->name('categoria.desativar');
+        Route::patch('/categoria/{id}/ativar', [CategoriaController::class, 'ativar'])->name('categoria.ativar');
+
+
+
+
+
+
+
+
+
+            
+
+        //Categorias
+        Route::get('/produto', [ProdutoController::class, 'index'])
+            ->name('produto');
+            
 });

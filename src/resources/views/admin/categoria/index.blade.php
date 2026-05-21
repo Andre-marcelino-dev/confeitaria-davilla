@@ -14,6 +14,7 @@
             <!--begin::Row-->
             <div class="row">
 
+
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Gerenciamento de Categorias</h3>
@@ -85,9 +86,44 @@
 
             </div>
         </div>
+
+
+
+
     </div>
 
 
+
     @include('admin.categoria.modal.criar')
+
+
+<script>
+  // ALERTA SUCESSO
+  setTimeout(function() {
+
+    let alertaSucesso = document.getElementById('alertSucesso');
+
+    if (alertaSucesso) {
+      alertaSucesso.style.display = 'none';
+    }
+
+  }, 3000); // 3 segundos
+
+
+  // ALERTA ERRO
+  setTimeout(function() {
+
+    let alertaErro = document.getElementById('alertErro');
+
+    if (alertaErro) {
+      alertaErro.style.display = 'none';
+    }
+
+  }, 3000); // 3 segundos
+</script>
+
+
+@include('admin.categoria.modal.criar')
+
 
 @endsection

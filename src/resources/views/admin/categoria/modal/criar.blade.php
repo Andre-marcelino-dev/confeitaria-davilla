@@ -1,3 +1,4 @@
+
 <!-- Modal  Nova Categoria-->
 <div class="modal fade" id="modalNovaCategoria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
