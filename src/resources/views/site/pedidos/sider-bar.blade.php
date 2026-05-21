@@ -283,7 +283,7 @@
                               <ul class="tag-list clearfix">
                                   @foreach($filtroCategoria as $categoria)
                                   <li>
-                                      <a href="{{ route('cardapio.categoria', $categoria->slug_produto) }}">
+                                      <a href="{{ route('cardapio.categoria', $categoria->id_categoria) }}">
                                           {{ $categoria->nome_categoria }}
                                       </a>
                                   </li>
