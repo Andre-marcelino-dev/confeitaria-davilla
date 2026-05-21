@@ -14,9 +14,23 @@
     <!--begin::Row-->
     <div class="row">
 
+      @if (session('success'))
+      <div class="alert alert-success" id="alertSucesso" role="alert">
+        {{ session('success') }}
+      </div>
+      @endif
+
+      @if ($errors->any())
+      <div class="alert alert-danger" id="alertErro" role="alert">
+        <strong>Atenção</strong> verifique os campos do formulário.
+      </div>
+      @endif
+
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">Gerenciamento de Categorias</h3>
+
+
           <div class="card-tools">
             <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#modalNovaCategoria">
               <i class="bi bi-plus-circle"></i>
@@ -46,6 +60,8 @@
                   @if($linha->status_categoria === 'ATIVO')
                   <span class="badge text-bg-success">Ativo</span>
                   @else
+
+
                   <span class="badge text-bg-danger">Inativo</span>
                   @endif
                 </td>
@@ -55,9 +71,31 @@
                     <i class="bi bi-pencil"></i>
                   </button>
 
-                  <button type="button" class="btn btn-danger">
-                    <i class="bi bi-trash3"></i>
-                  </button>
+                  @if($linha->status_categoria === 'ATIVO')
+
+                  <form action="{{ route('admin.categoria.desativar', $linha->id_categoria) }}" method="POST">
+                    @csrf
+                    @method('PATCH')
+
+                    <button type="submit" class="btn btn-danger">
+                      <i class="bi bi-trash3"></i>
+                    </button>
+                  </form>
+
+                  @else
+
+                  <form action="{{ route('admin.categoria.ativar', $linha->id_categoria) }}" method="POST">
+                    @csrf
+                    @method('PATCH')
+
+                    <button type="submit" class="btn btn-success">
+                      <i class="bi bi-arrow-counterclockwise"></i>
+                    </button>
+                  </form>
+
+                  @endif
+
+
 
                 </td>
               </tr>
@@ -77,6 +115,33 @@
     </div>
   </div>
 </div>
+
+
+
+<script>
+  // ALERTA SUCESSO
+  setTimeout(function() {
+
+    let alertaSucesso = document.getElementById('alertSucesso');
+
+    if (alertaSucesso) {
+      alertaSucesso.style.display = 'none';
+    }
+
+  }, 3000); // 3 segundos
+
+
+  // ALERTA ERRO
+  setTimeout(function() {
+
+    let alertaErro = document.getElementById('alertErro');
+
+    if (alertaErro) {
+      alertaErro.style.display = 'none';
+    }
+
+  }, 3000); // 3 segundos
+</script>
 
 
 @include('admin.categoria.modal.criar')

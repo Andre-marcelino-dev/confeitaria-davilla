@@ -37,8 +37,10 @@
               </tr>
             </thead>
             <tbody>
+
               @forelse(  $listaProduto as $linha)
               <tr class="align-middle">
+
                 <td><img src="{{ asset('davilla/images/'. $linha->foto_produto) }}" width="80"></td>
                 <td>{{ $linha->nome_produto }}</td>
                 <td>{{ $linha->descricao_produto  }}</td>
@@ -46,11 +48,11 @@
                   @if($linha->status_produto === 'ATIVO')
                   <span class="badge text-bg-success">Ativo</span>
                   @else
-                  <span class="badge text-bg-danger">Inativo</span>
+                  <span class="badge text-bg-danger">Desativar</span>
                   @endif
                 </td>
-                <td>
 
+                <td>
                   <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditarCategoria{{ $linha->id_produto }}">
                     <i class="bi bi-pencil"></i>
                   </button>
