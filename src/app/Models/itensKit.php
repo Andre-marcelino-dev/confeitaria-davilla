@@ -12,7 +12,7 @@ class itensKit extends Model
     protected $table =  'tbl_itens_kit';
     protected $primaryKey = 'id_item_kit';
 
-    
+
     public $timestamps = true;
 
     const CREATED_AT = 'criado_em_kit';
@@ -28,6 +28,6 @@ public function ProdutosKit(){
 }
 
 public function produto(){
-    return $this->hasMany(Produto::class, 'id_produto', 'id_produto');
+    return $this->belongsTo(Produto::class, 'id_produto', 'id_produto');
 }
 }

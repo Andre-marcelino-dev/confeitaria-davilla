@@ -32,8 +32,7 @@ class Produto extends Model
     ];
 
     // Relacionamento um produto pertence a uma categoria
-    public function CategoriaProduto(){
-        return $this->belongsTo(Categoria::class, 'id_categoria', 'id_categoria');
-
-    }
+public function CategoriaProduto(){
+    return $this->belongsTo(Categoria::class, 'id_categoria', 'id_categoria');
+}
 }

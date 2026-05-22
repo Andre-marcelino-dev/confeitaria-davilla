@@ -17,11 +17,16 @@ class Kits extends Model
     const CREATED_AT = 'criado_em_kit';
     const UPDATED_AT = 'atualizado_em_kit';
 
-    protected $fillable = [
-        'nome_kit',
-        'descricao_kit',
-        'status_kit'
-    ];
+protected $fillable = [
+    'nome_kit',
+    'descricao_kit',
+    'foto_kit',
+    'slug_kit',
+    'preco_kit',
+    'destaque_kit',
+    'whatsapp_kit',
+    'preco_promocional_kit',
+];
 public function ProdutosKit(){
     return $this->hasMany(itensKit::class, 'id_kit', 'id_kit');
 }
