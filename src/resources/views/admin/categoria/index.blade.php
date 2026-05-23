@@ -1,20 +1,14 @@
 @extends('layout.admin')
 
 @section('title', 'Categoria | Confeitaria Dashboard')
-
 @section('pg-titulo', 'Categoria')
-
 @section('link-topo', 'Categoria')
 
 @section('content')
 
     <div class="app-content">
-        <!--begin::Container-->
         <div class="container-fluid">
-            <!--begin::Row-->
             <div class="row">
-
-
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Gerenciamento de Categorias</h3>
@@ -26,7 +20,7 @@
                             </button>
                         </div>
                     </div>
-                    <!-- /.card-header -->
+
                     <div class="card-body p-0">
                         <table class="table table-striped">
                             <thead>
@@ -52,7 +46,6 @@
                                             @endif
                                         </td>
                                         <td>
-
                                             {{-- Botão Ativar/Desativar --}}
                                             <form action="{{ route('admin.categoria.status', $linha->id_categoria) }}"
                                                 method="POST" class="d-inline">
@@ -69,6 +62,17 @@
                                                 @endif
                                             </form>
 
+                                            {{-- Botão Atualizar --}}
+                                            <button type="button" class="btn btn-warning"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#modalEditarCategoria"
+                                                data-id="{{ $linha->id_categoria }}"
+                                                data-nome="{{ $linha->nome_categoria }}"
+                                                data-descricao="{{ $linha->descricao_categoria }}"
+                                                data-ordem="{{ $linha->ordem_categoria }}"
+                                                data-status="{{ $linha->status_categoria }}">
+                                                <i class="bi bi-arrow-counterclockwise"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                 @empty
@@ -76,54 +80,42 @@
                                         <td>Nenhuma categoria cadastrada</td>
                                     </tr>
                                 @endforelse
-
                             </tbody>
                         </table>
                     </div>
-                    <!-- /.card-body -->
                 </div>
-
-
             </div>
         </div>
-
-
-
-
     </div>
 
-
-
+    {{-- Modais --}}
     @include('admin.categoria.modal.criar')
+    @include('admin.categoria.modal.editar')
 
+    <script>
+        // Preenche o modal de editar com os dados da linha
+        document.getElementById('modalEditarCategoria').addEventListener('show.bs.modal', function (event) {
+            const btn = event.relatedTarget;
 
-<script>
-  // ALERTA SUCESSO
-  setTimeout(function() {
+            document.getElementById('edit_nome_categoria').value      = btn.getAttribute('data-nome');
+            document.getElementById('edit_descricao_categoria').value = btn.getAttribute('data-descricao');
+            document.getElementById('edit_ordem_categoria').value     = btn.getAttribute('data-ordem');
+            document.getElementById('edit_status_categoria').value    = btn.getAttribute('data-status');
 
-    let alertaSucesso = document.getElementById('alertSucesso');
+            document.getElementById('formEditarCategoria').action = '{{ url("admin/categoria") }}/' + btn.getAttribute('data-id');
+        });
 
-    if (alertaSucesso) {
-      alertaSucesso.style.display = 'none';
-    }
+        // ALERTA SUCESSO
+        setTimeout(function() {
+            let alertaSucesso = document.getElementById('alertSucesso');
+            if (alertaSucesso) alertaSucesso.style.display = 'none';
+        }, 3000);
 
-  }, 3000); // 3 segundos
-
-
-  // ALERTA ERRO
-  setTimeout(function() {
-
-    let alertaErro = document.getElementById('alertErro');
-
-    if (alertaErro) {
-      alertaErro.style.display = 'none';
-    }
-
-  }, 3000); // 3 segundos
-</script>
-
-
-@include('admin.categoria.modal.criar')
-
+        // ALERTA ERRO
+        setTimeout(function() {
+            let alertaErro = document.getElementById('alertErro');
+            if (alertaErro) alertaErro.style.display = 'none';
+        }, 3000);
+    </script>
 
 @endsection
