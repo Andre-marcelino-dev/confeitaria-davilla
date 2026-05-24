@@ -229,7 +229,7 @@ CREATE TABLE `sessions` (
 
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
-INSERT INTO `sessions` VALUES ('RYy6N1cn3O5wtP9eNvr4icFLH45NlR1AfyrBpZME',NULL,'172.19.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0','eyJfdG9rZW4iOiJwancwOFhwZFB2aHl3UERNeWdsM1JiaHNja1VVWGtCWGtNOGF6NUdYIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cL2xvY2FsaG9zdDo4MDgxXC9hZG1pblwvY2F0ZWdvcmlhIiwicm91dGUiOiJhZG1pbi5jYXRlZ29yaWEifSwiX2ZsYXNoIjp7Im9sZCI6W10sIm5ldyI6W119fQ==',1779573241);
+INSERT INTO `sessions` VALUES ('SPl91k9dbakyDWyUuYo80VkudomZjqsv25EkPOVH',NULL,'172.19.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0','eyJfdG9rZW4iOiJJa21QZUkyMXhlTTVXTDNMWFF1WmpUYnRpVlVKVFJYUUcyT0FxbEpNIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cL2xvY2FsaG9zdDo4MDgxXC9hZG1pblwvcHJvZHV0byIsInJvdXRlIjoiYWRtaW4ucHJvZHV0byJ9LCJfZmxhc2giOnsib2xkIjpbXSwibmV3IjpbXX19',1779655324);
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -290,7 +290,7 @@ CREATE TABLE `tbl_categorias` (
 
 LOCK TABLES `tbl_categorias` WRITE;
 /*!40000 ALTER TABLE `tbl_categorias` DISABLE KEYS */;
-INSERT INTO `tbl_categorias` VALUES (1,'Bolos','Bolos de vitrine e sob encomenda.','INATIVO',1,'2026-03-05 09:56:50','2026-05-23 21:41:02'),(2,'Doces','Brigadeiro, trufas e doces finos.','ATIVO',2,'2026-03-05 09:57:30','2026-05-23 20:30:01'),(3,'Bebidas quentes','Café, capuccino e chás.','INATIVO',3,'2026-03-05 09:58:21','2026-05-23 21:40:22'),(4,'Tortas','Tortas doces vendidas por fatia ou inteira','ATIVO',4,'2026-03-12 10:01:41','2026-05-21 21:57:27'),(5,'Kits Presente','Kits especiais para presentear','INATIVO',5,'2026-03-12 10:03:45','2026-05-23 21:37:05'),(6,'Kit Bolo churros','kit completo com doces finos','INATIVO',6,'2026-05-21 20:37:42','2026-05-23 21:38:09');
+INSERT INTO `tbl_categorias` VALUES (1,'Bolos','Bolos de vitrine e sob encomenda.','ATIVO',1,'2026-03-05 09:56:50','2026-05-24 20:07:14'),(2,'Doces','Brigadeiro, trufas e doces finos.','ATIVO',2,'2026-03-05 09:57:30','2026-05-24 19:29:52'),(3,'Bebidas quentes','Café, capuccino e chás, chocolate quente.','ATIVO',3,'2026-03-05 09:58:21','2026-05-24 20:16:16'),(4,'Tortas','Tortas doces vendidas por fatia ou inteira','ATIVO',4,'2026-03-12 10:01:41','2026-05-24 19:29:54'),(5,'Kits Presentes','Kits especiais para presentear','ATIVO',5,'2026-03-12 10:03:45','2026-05-24 19:29:53'),(6,'Kit Bolos festa','kit completo com doces finos','ATIVO',6,'2026-05-21 20:37:42','2026-05-24 16:24:52');
 /*!40000 ALTER TABLE `tbl_categorias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -448,7 +448,7 @@ CREATE TABLE `tbl_itens_kit` (
   KEY `fk_item_kit_produto` (`id_produto`),
   CONSTRAINT `fk_item_kit_kit` FOREIGN KEY (`id_kit`) REFERENCES `tbl_kits` (`id_kit`),
   CONSTRAINT `fk_item_kit_produto` FOREIGN KEY (`id_produto`) REFERENCES `tbl_produtos` (`id_produto`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -457,7 +457,7 @@ CREATE TABLE `tbl_itens_kit` (
 
 LOCK TABLES `tbl_itens_kit` WRITE;
 /*!40000 ALTER TABLE `tbl_itens_kit` DISABLE KEYS */;
-INSERT INTO `tbl_itens_kit` VALUES (4,1,4,'ATIVO','2026-05-19 17:18:20','2026-05-22 16:38:43');
+INSERT INTO `tbl_itens_kit` VALUES (4,1,4,'ATIVO','2026-05-19 17:18:20','2026-05-22 16:38:43'),(5,2,17,'ATIVO','2026-05-24 17:49:12','2026-05-24 17:49:12');
 /*!40000 ALTER TABLE `tbl_itens_kit` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -514,7 +514,7 @@ CREATE TABLE `tbl_kits` (
   `whatsapp_kit` varchar(255) DEFAULT NULL,
   `preco_promocional_kit` decimal(8,2) DEFAULT NULL,
   PRIMARY KEY (`id_kit`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -523,7 +523,7 @@ CREATE TABLE `tbl_kits` (
 
 LOCK TABLES `tbl_kits` WRITE;
 /*!40000 ALTER TABLE `tbl_kits` DISABLE KEYS */;
-INSERT INTO `tbl_kits` VALUES (1,'Kit Bolo cenoura','Kit com caxa-4-doces-fit','produto/bolo-de-cenoura-(fatia)','kit-bolo-cenoura','2026-05-19 17:07:26','2026-05-22 21:12:54',49.90,'MAIS VENDIDO','5511999999999',23.00);
+INSERT INTO `tbl_kits` VALUES (1,'Kit Bolo cenoura','Kit com caxa-4-doces-fit','produto/bolo-de-cenoura-(fatia)','kit-bolo-cenoura','2026-05-19 17:07:26','2026-05-24 13:27:46',49.90,'MAIS VENDIDO','5511999999999',23.00),(2,'Kit Festa  BÁSICO','1 TORTA pequena (700g) 30 SALGADINHOS FRITOS 20 DOCINHOS DE FESTA 1 REFRI DE 1,5 LITROS','produto/kit-festa---basico-6-pessoas.png','kit-Massa-Branca','2026-05-24 17:43:44','2026-05-24 18:11:10',59.90,'MAIS VENDIDO','5511999999999',38.00);
 /*!40000 ALTER TABLE `tbl_kits` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -583,7 +583,7 @@ CREATE TABLE `tbl_produtos` (
   PRIMARY KEY (`id_produto`),
   KEY `fk_produtos_categorias` (`id_categoria`),
   CONSTRAINT `fk_produtos_categorias` FOREIGN KEY (`id_categoria`) REFERENCES `tbl_categorias` (`id_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -592,7 +592,7 @@ CREATE TABLE `tbl_produtos` (
 
 LOCK TABLES `tbl_produtos` WRITE;
 /*!40000 ALTER TABLE `tbl_produtos` DISABLE KEYS */;
-INSERT INTO `tbl_produtos` VALUES (1,2,'Brigadeiro Gourmet','brigadeiro-gourmet','6 brigadeiros sortidos','Médio','CX',18.00,'produto/brigadeiro-gourmet-(6un).png','ATIVO','NAO',0,'2026-03-10 08:51:19','2026-05-23 19:56:40'),(4,1,'Bolo de Cenoura (Fatia)','bolo-de-cenoura-fatia','Fatia de bolo de cenoura com cobertura de chocolate','Pequeno','FT',23.00,'produto/bolo-de-cenoura-(fatia).png','ATIVO','NAO',0,'2026-03-10 09:19:33','2026-05-23 20:07:08'),(5,3,'Capuccino 300ml','capuccino-300ml','Capuccino cremoso','Grande','ML',13.75,'produto/capuccino-300ml.png','ATIVO','NAO',0,'2026-03-10 09:24:16','2026-05-23 19:34:52'),(6,1,'Bolo de Chocolate Fatia','bolo-de-chocolate-fatia','Fatia de bolo de chocolate com cobertura','Médio','FT',12.50,'produto/bolo-de-chocolate-fatia.png','ATIVO','NAO',0,'2026-03-12 17:20:05','2026-05-19 19:57:51'),(7,1,'Bolo Red Velvet Fatia','bolo-red-velvet-fatia','Fatia de bolo red velvet com cream cheese','Grande','FT',14.00,'produto/bolo-red-velvet-fatia.png','ATIVO','NAO',0,'2026-03-12 17:26:15','2026-05-19 19:57:51'),(8,2,'Beijinho Gourmet','beijinho-gourmet','Beijinho gourmet tradicional','Pequeno','UN',3.50,'produto/beijinho-gourmet.png','ATIVO','NAO',0,'2026-03-12 17:33:40','2026-05-19 19:57:51'),(9,2,'Caixa com 6 Doces Finos','caixa-com-6-doces-finos','Caixa com 6 doces finos variados','Médio','CX',19.90,'produto/caixa-com-6-doces-finos.png','ATIVO','NAO',0,'2026-03-12 17:39:22','2026-05-19 19:57:51'),(10,4,'Torta de Limão','torta-de-limao','Torta-de-limão pedaço','Médio','UN',18.00,'produto/torta-de-limao-fatia.png','ATIVO','NAO',0,'2026-03-12 17:46:10','2026-05-22 16:23:11'),(11,4,'Cheesecake de Frutas Vermelhas','cheesecake-de-frutas-vermelhas','Pedaço de cheesecake com frutas vermelhas','Grande','UN',15.50,'produto/cheesecake-de-frutas-vermelhas.png','ATIVO','NAO',0,'2026-03-12 17:52:45','2026-05-19 19:57:51'),(12,3,'Café Expresso 80ml','cafe-expresso-80ml','Café expresso tradicional','Pequeno','ML',6.00,'produto/cafe-expresso.png','ATIVO','NAO',0,'2026-03-12 17:59:18','2026-05-19 19:57:51'),(13,3,'Cappuccino 600ml','cappuccino-600ml','Cappuccino cremoso servido quente','Grande','ML',10.50,'produto/cappuccino-cremoso.png','ATIVO','NAO',0,'2026-03-12 18:05:30','2026-05-19 19:57:51'),(14,5,'Kit Presente Doce','kit-presente-doce','Kit com mini bolo e doces especiais','Grande','UN',49.90,'produto/kit-presente-doce.png','ATIVO','NAO',0,'2026-03-12 18:12:55','2026-05-23 19:53:36'),(15,1,'Mini-bolo-de-cenoura','bolo-cenoura-mini','Bolo de cenoura tradicional','Médio','UN',20.00,'produto/mini-bolo-de-cenoura.png','ATIVO','NAO',0,'2026-03-12 18:18:40','2026-05-22 16:26:48');
+INSERT INTO `tbl_produtos` VALUES (1,2,'Brigadeiro Gourmet','brigadeiro-gourmet','6 brigadeiros sortidos','Médio','CX',18.00,'produto/brigadeiro-gourmet-(6un).png','ATIVO','SIM',1,'2026-03-10 08:51:19','2026-05-24 20:14:36'),(4,1,'Bolo de Cenoura (Fatia)','bolo-de-cenoura-fatia','Fatia de bolo de cenoura com cobertura de chocolate','Pequeno','FT',23.00,'produto/bolo-de-cenoura-(fatia).png','ATIVO','SIM',2,'2026-03-10 09:19:33','2026-05-24 20:39:40'),(5,3,'Capuccino 300ml','capuccino-300ml','Capuccino cremoso','Grande','ML',13.75,'produto/capuccino-300ml.png','ATIVO','NAO',3,'2026-03-10 09:24:16','2026-05-24 17:01:32'),(6,1,'Bolo de Chocolate Fatia','bolo-de-chocolate-fatia','Fatia de bolo de chocolate com cobertura','Médio','FT',12.50,'produto/bolo-de-chocolate-fatia.png','ATIVO','NAO',4,'2026-03-12 17:20:05','2026-05-24 17:00:47'),(7,1,'Bolo Red Velvet Fatia','bolo-red-velvet-fatia','Fatia de bolo red velvet com cream cheese','Grande','FT',14.00,'produto/bolo-red-velvet-fatia.png','ATIVO','NAO',5,'2026-03-12 17:26:15','2026-05-24 19:38:30'),(8,2,'Beijinho Gourmet','beijinho-gourmet','Beijinho gourmet tradicional','Pequeno','UN',3.50,'produto/beijinho-gourmet.png','ATIVO','NAO',0,'2026-03-12 17:33:40','2026-05-24 20:39:54'),(9,2,'Caixa com 6 Doces Finos','caixa-com-6-doces-finos','Caixa com 6 doces finos variados','Médio','CX',19.90,'produto/caixa-com-6-doces-finos.png','ATIVO','NAO',0,'2026-03-12 17:39:22','2026-05-24 20:14:36'),(10,4,'Torta de Limão','torta-de-limao','Torta-de-limão pedaço','Médio','UN',18.00,'produto/torta-de-limao-fatia.png','ATIVO','NAO',0,'2026-03-12 17:46:10','2026-05-24 20:39:48'),(11,4,'Cheesecake de Frutas Vermelhas','cheesecake-de-frutas-vermelhas','Pedaço de cheesecake com frutas vermelhas','Grande','UN',15.50,'produto/cheesecake-de-frutas-vermelhas.png','ATIVO','NAO',0,'2026-03-12 17:52:45','2026-05-24 20:14:36'),(12,3,'Café Expresso 80ml','cafe-expresso-80ml','Café expresso tradicional','Pequeno','ML',6.00,'produto/cafe-expresso.png','ATIVO','NAO',0,'2026-03-12 17:59:18','2026-05-24 20:14:36'),(13,3,'Cappuccino 600ml','cappuccino-600ml','Cappuccino cremoso servido quente','Grande','ML',10.50,'produto/cappuccino-cremoso.png','ATIVO','NAO',0,'2026-03-12 18:05:30','2026-05-24 20:14:36'),(14,5,'Kit Presente Doce','kit-presente-doce','Kit com mini bolo e doces especiais','Grande','UN',49.90,'produto/kit-presente-doce.png','ATIVO','NAO',7,'2026-03-12 18:12:55','2026-05-24 19:20:23'),(15,1,'Mini-bolo-de-cenoura','bolo-cenoura-mini','Bolo de cenoura tradicional','Médio','UN',20.00,'produto/mini-bolo-de-cenoura.png','ATIVO','NAO',0,'2026-03-12 18:18:40','2026-05-24 20:14:36'),(17,6,'Kit Festa - BÁSICO 6 pessoas','kit-festa-basico','1 TORTA pequena (700g)\r\n30 SALGADINHOS FRITOS\r\n20 DOCINHOS DE FESTA\r\n1 REFRI DE 1,5 LITROS','Grande','CX',135.00,'produto/kit-festa---basico-6-pessoas.png','ATIVO','NAO',11,'2026-05-24 16:19:50','2026-05-24 18:08:30'),(18,1,'bolo de limão','bolo-de-limao','conquista pelo aroma fresco e pelo equilíbrio.','Grande','FT',12.50,'produto/bolo-de-limao.png','ATIVO','SIM',12,'2026-05-24 19:43:57','2026-05-24 20:42:04');
 /*!40000 ALTER TABLE `tbl_produtos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -701,4 +701,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-05-23 22:19:21
+-- Dump completed on 2026-05-24 20:46:08

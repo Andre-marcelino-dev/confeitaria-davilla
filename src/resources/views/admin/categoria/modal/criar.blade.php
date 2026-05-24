@@ -1,3 +1,13 @@
+<script>
+    setTimeout(function() {
+        const sucesso = document.getElementById('alerta-sucesso');
+        const erro = document.getElementById('alerta-erro');
+        if (sucesso) sucesso.style.display = 'none';
+        if (erro) erro.style.display = 'none';
+    }, 3000);
+</script>
+
+
 
 <!-- Modal  Nova Categoria-->
 <div class="modal fade" id="modalNovaCategoria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

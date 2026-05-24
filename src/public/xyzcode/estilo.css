@@ -63,3 +63,22 @@
     border-radius: 50%;
 
 }
+
+/* 1. Força as colunas do Bootstrap a terem a mesma altura na mesma linha */
+.pricing-section .row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+}
+
+.pricing-section .pricing-table .inner-box {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.pricing-section .table-footer {
+    flex-grow: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+}

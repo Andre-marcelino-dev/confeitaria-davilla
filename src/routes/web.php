@@ -36,4 +36,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     // Produtos
     Route::get('/produto', [ProdutoController::class, 'index'])->name('produto');
+    Route::put('/produto/{id}', [ProdutoController::class, 'update'])->name('produto.update');
+     Route::patch('/produto/{id}/status', [ProdutoController::class, 'alterarStatus'])->name('produto.status');
+    Route::post('/produto', [ProdutoController::class, 'store'])->name('produto.store');
+
+    //Deleta um produto especifico
+
+    Route::delete('/admin/produto/{id}', [ProdutoController::class, 'destroy'])
+    ->name('produto.destroy');
+    
 });
