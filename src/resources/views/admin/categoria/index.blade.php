@@ -21,6 +21,19 @@
                         </div>
                     </div>
 
+                    {{-- MENSAGENS DE FEEDBACK --}}
+                    @if (session('sucesso'))
+                        <div id="alerta-sucesso" class="alert alert-success alert-dismissible fade show mx-3" role="alert">
+                            ✅ {{ session('sucesso') }}
+                        </div>
+                    @endif
+
+                    @if (session('erro'))
+                        <div id="alerta-erro" class="alert alert-danger alert-dismissible fade show mx-3" role="alert">
+                            ❌ {{ session('erro') }}
+                        </div>
+                    @endif
+
                     <div class="card-body p-0">
                         <table class="table table-striped">
                             <thead>
@@ -62,22 +75,72 @@
                                                 @endif
                                             </form>
 
-                                            {{-- Botão Atualizar --}}
+                                            {{-- Botão Editar --}}
                                             <button type="button" class="btn btn-warning"
                                                 data-bs-toggle="modal"
-                                                data-bs-target="#modalEditarCategoria"
-                                                data-id="{{ $linha->id_categoria }}"
-                                                data-nome="{{ $linha->nome_categoria }}"
-                                                data-descricao="{{ $linha->descricao_categoria }}"
-                                                data-ordem="{{ $linha->ordem_categoria }}"
-                                                data-status="{{ $linha->status_categoria }}">
+                                                data-bs-target="#modalEditarCategoria{{ $linha->id_categoria }}">
                                                 <i class="bi bi-arrow-counterclockwise"></i>
                                             </button>
                                         </td>
                                     </tr>
+
+                                    {{-- MODAL EDITAR — um por categoria, dados via Blade --}}
+                                    <div class="modal fade" id="modalEditarCategoria{{ $linha->id_categoria }}" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Editar Categoria</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form method="POST" action="{{ route('admin.categoria.update', $linha->id_categoria) }}">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <div class="card-body">
+
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Nome</label>
+                                                                <input type="text" class="form-control" name="nome_categoria" required value="{{ $linha->nome_categoria }}">
+                                                            </div>
+
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Descrição</label>
+                                                                <textarea class="form-control" name="descricao_categoria" rows="3" required>{{ $linha->descricao_categoria }}</textarea>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-6 mb-3">
+                                                                    <label class="form-label">Ordem</label>
+                                                                    <input type="number" class="form-control" name="ordem_categoria" required value="{{ $linha->ordem_categoria }}">
+                                                                </div>
+                                                                <div class="col-6 mb-3">
+                                                                    <label class="form-label">Status</label>
+                                                                    <select class="form-select" name="status_categoria" required>
+                                                                        <option value="">Selecione</option>
+                                                                        @foreach(['ATIVO', 'INATIVO'] as $status)
+                                                                            <option value="{{ $status }}" {{ $linha->status_categoria == $status ? 'selected' : '' }}>
+                                                                                {{ $status }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="modal-footer mb-3 btn-modal">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                                <button type="submit" class="btn btn-primary">Salvar Categoria</button>
+                                                            </div>
+
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 @empty
                                     <tr>
-                                        <td>Nenhuma categoria cadastrada</td>
+                                        <td colspan="5" class="text-center">Nenhuma categoria cadastrada</td>
                                     </tr>
                                 @endforelse
                             </tbody>
@@ -88,32 +151,19 @@
         </div>
     </div>
 
-    {{-- Modais --}}
+    {{-- Modal Nova Categoria --}}
     @include('admin.categoria.modal.criar')
-    @include('admin.categoria.modal.editar')
 
     <script>
-        // Preenche o modal de editar com os dados da linha
-        document.getElementById('modalEditarCategoria').addEventListener('show.bs.modal', function (event) {
-            const btn = event.relatedTarget;
-
-            document.getElementById('edit_nome_categoria').value      = btn.getAttribute('data-nome');
-            document.getElementById('edit_descricao_categoria').value = btn.getAttribute('data-descricao');
-            document.getElementById('edit_ordem_categoria').value     = btn.getAttribute('data-ordem');
-            document.getElementById('edit_status_categoria').value    = btn.getAttribute('data-status');
-
-            document.getElementById('formEditarCategoria').action = '{{ url("admin/categoria") }}/' + btn.getAttribute('data-id');
-        });
-
         // ALERTA SUCESSO
         setTimeout(function() {
-            let alertaSucesso = document.getElementById('alertSucesso');
+            let alertaSucesso = document.getElementById('alerta-sucesso');
             if (alertaSucesso) alertaSucesso.style.display = 'none';
         }, 3000);
 
         // ALERTA ERRO
         setTimeout(function() {
-            let alertaErro = document.getElementById('alertErro');
+            let alertaErro = document.getElementById('alerta-erro');
             if (alertaErro) alertaErro.style.display = 'none';
         }, 3000);
     </script>

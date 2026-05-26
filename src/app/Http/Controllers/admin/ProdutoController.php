@@ -12,6 +12,8 @@ class ProdutoController extends Controller
 {
     public function index()
     {
+         $produtos = Produto::orderBy('ordem_produto')->get();
+         
         $filtroCategoria = Categoria::where('status_categoria', 'ATIVO')
             ->orderBy('ordem_categoria')
             ->get();

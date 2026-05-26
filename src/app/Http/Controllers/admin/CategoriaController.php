@@ -18,7 +18,7 @@ class CategoriaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nome_categoria'      => 'required|string|max:255',
+            'nome_categoria'      => 'required|string|max:30',
             'descricao_categoria' => 'required|string',
             'ordem_categoria'     => 'required|integer',
             'status_categoria'    => 'required|in:ATIVO,INATIVO',
