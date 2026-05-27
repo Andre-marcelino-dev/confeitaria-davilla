@@ -38,7 +38,7 @@ class CategoriaController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nome_categoria'      => 'required|string|max:255',
+            'nome_categoria'      => 'required|string|max:30',
             'descricao_categoria' => 'required|string',
             'ordem_categoria'     => 'required|integer',
             'status_categoria'    => 'required|in:ATIVO,INATIVO',
@@ -54,7 +54,7 @@ class CategoriaController extends Controller
         $categoria->save();
 
         return redirect()->route('admin.categoria')
-                         ->with('sucesso', 'Categoria atualizada com sucesso!');
+        ->with('sucesso', 'Categoria atualizada com sucesso!');
     }
 
     public function alterarStatus($id)
