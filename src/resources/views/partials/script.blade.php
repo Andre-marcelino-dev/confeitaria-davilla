@@ -1,4 +1,4 @@
-<script src="{{asset('davilla/js/jquery.js')}}"></script> 
+<script src="{{asset('davilla/js/jquery.js')}}"></script>
 <script src="{{asset('davilla/js/popper.min.js')}}"></script>
 <script src="{{asset('davilla/js/bootstrap.min.js')}}"></script>
 <!--Revolution Slider-->
@@ -23,3 +23,4 @@
 <script src="{{asset('davilla/js/sticky_sidebar.min.js')}}"></script>
 <script src="{{asset('davilla/js/select2.min.js') }}"></script>
 <script src="{{asset('davilla/js/jquery-ui.min.js') }}"></script>
+

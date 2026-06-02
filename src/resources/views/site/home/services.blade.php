@@ -2,7 +2,7 @@
  @php
  $features = asset('davilla/images/fundoServicos.png');
  @endphp
- 
+
  <section class="services-section" style="background-image: url('{{ $features }}')">
      <div class="auto-container">
          <div class="sec-title text-center">
