@@ -12,6 +12,8 @@
     use App\Http\Controllers\admin\CategoriaController;
     use App\Http\Controllers\admin\ProdutoController;
     use App\Http\Controllers\admin\ClienteController;
+    use App\Http\Controllers\admin\AuthController;
+
 
     // Rotas do site
     Route::get('/', [HomeController::class, 'home'])->name('home');
@@ -24,29 +26,39 @@
     Route::get('/regiao/area/{id}', [RegiaoController::class, 'show'])->name('regiao.area');
     Route::get('/contato', [ContatoController::class, 'contato'])->name('contato');
 
-    // Rotas do admin
-    Route::prefix('admin')->name('admin.')->group(function () {
+   // Rotas do admin
+Route::prefix('admin')->name('admin.')->group(function () {
 
-    Route::get('/', [DashController::class, 'index'])->name('dash');
+    // Autenticação (sem proteção)
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', [AuthController::class, 'autenticar'])->name('login.autenticar'); // ✅ nome único
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    // Categorias
-    Route::get('/categoria', [CategoriaController::class, 'index'])->name('categoria');
-    Route::post('/categoria', [CategoriaController::class, 'store'])->name('categoria.store');
-    Route::put('/categoria/{id}', [CategoriaController::class, 'update'])->name('categoria.update');
-    Route::patch('/categoria/{id}/status', [CategoriaController::class, 'alterarStatus'])->name('categoria.status');
+    // Rotas protegidas
+    Route::middleware('auth:admin')->group(function () { // ✅ sem .name() aqui
 
-    // Produtos
-    Route::get('/produto', [ProdutoController::class, 'index'])->name('produto');
-    Route::post('/produto', [ProdutoController::class, 'store'])->name('produto.store');
-    Route::put('/produto/{id}', [ProdutoController::class, 'update'])->name('produto.update');
-    Route::patch('/produto/{id}/status', [ProdutoController::class, 'alterarStatus'])->name('produto.status');
-    Route::delete('/produto/{id}', [ProdutoController::class, 'destroy'])->name('produto.destroy');
+        Route::get('/', [DashController::class, 'index'])->name('dash');
 
-    // Clientes
-    Route::get('/cliente', [ClienteController::class, 'index'])->name('cliente');
-    Route::post('/cliente', [ClienteController::class, 'store'])->name('cliente.store');
-    Route::put('/cliente/{id}', [ClienteController::class, 'update'])->name('cliente.update');
-    Route::patch('/cliente/{id}/status', [ClienteController::class, 'status'])->name('cliente.status');
-    Route::delete('/cliente/{id}', [ClienteController::class, 'destroy'])->name('cliente.destroy');
+        // Categorias
+        Route::get('/categoria', [CategoriaController::class, 'index'])->name('categoria');
+        Route::post('/categoria', [CategoriaController::class, 'store'])->name('categoria.store');
+        Route::put('/categoria/{id}', [CategoriaController::class, 'update'])->name('categoria.update');
+        Route::patch('/categoria/{id}/status', [CategoriaController::class, 'alterarStatus'])->name('categoria.status');
 
-});
+        // Produtos
+        Route::get('/produto', [ProdutoController::class, 'index'])->name('produto');
+        Route::post('/produto', [ProdutoController::class, 'store'])->name('produto.store');
+        Route::put('/produto/{id}', [ProdutoController::class, 'update'])->name('produto.update');
+        Route::patch('/produto/{id}/status', [ProdutoController::class, 'alterarStatus'])->name('produto.status');
+        Route::delete('/produto/{id}', [ProdutoController::class, 'destroy'])->name('produto.destroy');
+
+        // Clientes
+        Route::get('/cliente', [ClienteController::class, 'index'])->name('cliente');
+        Route::post('/cliente', [ClienteController::class, 'store'])->name('cliente.store');
+        Route::put('/cliente/{id}', [ClienteController::class, 'update'])->name('cliente.update');
+        Route::patch('/cliente/{id}/status', [ClienteController::class, 'status'])->name('cliente.status');
+        Route::delete('/cliente/{id}', [ClienteController::class, 'destroy'])->name('cliente.destroy');
+
+    });
+
+}); // FIM DO PREFIX ADMIN

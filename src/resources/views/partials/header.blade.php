@@ -57,7 +57,7 @@
 
                         <!-- Admin -->
                         <div class="cart-btn">
-                            <a href="{{ route('admin.dash') }}">
+                            <a href="{{ route('admin.login') }}">
                                 <i class="fa fa-user-shield"></i>
                                 <span class="count"></span>
                             </a>
