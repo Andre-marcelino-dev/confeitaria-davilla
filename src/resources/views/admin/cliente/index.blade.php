@@ -143,8 +143,7 @@
                                                                             <div class="avatar-preview d-flex align-items-center justify-content-center border rounded bg-white"
                                                                                 style="width: 70px; height: 70px; margin: 0 auto; overflow: hidden;">
                                                                                 @if ($linha->foto_cliente)
-                                                                                    <img src="{{ asset('storage/' . $linha->foto_cliente) }}"
-                                                                                        width="50" height="50"
+                                                                                   <img src="{{ asset('davilla/images/cliente/' . $linha->foto_cliente) }}"
                                                                                         style="object-fit: cover; border-radius: 50%;">
                                                                                 @else
                                                                                     <div class="d-flex align-items-center justify-content-center bg-secondary rounded-circle"
