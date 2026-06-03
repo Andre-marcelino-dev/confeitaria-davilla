@@ -37,7 +37,23 @@ class AuthController extends Controller
         return back()->withInput()->with('error', 'Email ou senha inválidos');
     }
  
-    public function logout() {}
+    public function logout(Request $request ) {
+   Auth::guard('admin')->logout();
+   $request->session()->invalidate();
+   $request->session()->regenerateToken();
+   return redirect()->route('admin.login');
+
+    }
+
+public function perfil()
+{
+    $usuario = auth('admin')->user();
+    return view('admin.dash.perfil', compact('usuario'));  // ← adicione .dash.
+}
+
+
+
+
 }
  
  

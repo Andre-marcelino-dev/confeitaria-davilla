@@ -8,6 +8,8 @@
     use App\Http\Controllers\site\SobreController;
     use Illuminate\Support\Facades\Route;
 
+
+    use App\Http\Controllers\admin\PerfilController;
     use App\Http\Controllers\admin\DashController;
     use App\Http\Controllers\admin\CategoriaController;
     use App\Http\Controllers\admin\ProdutoController;
@@ -29,15 +31,23 @@
    // Rotas do admin
 Route::prefix('admin')->name('admin.')->group(function () {
 
-    // Autenticação (sem proteção)
+    // Autenticação
     Route::get('/login', [AuthController::class, 'login'])->name('login');
-    Route::post('/login', [AuthController::class, 'autenticar'])->name('login.autenticar'); // ✅ nome único
+    Route::post('/login', [AuthController::class, 'autenticar'])->name('login.autenticar');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     // Rotas protegidas
-    Route::middleware('auth:admin')->group(function () { // ✅ sem .name() aqui
+    Route::middleware('auth:admin')->group(function () {
 
+        // Dashboard
         Route::get('/', [DashController::class, 'index'])->name('dash');
+
+        // Perfil
+        Route::get('/perfil', [PerfilController::class, 'index'])
+            ->name('perfil');
+
+        Route::put('/perfil', [PerfilController::class, 'update'])
+            ->name('perfil.update');
 
         // Categorias
         Route::get('/categoria', [CategoriaController::class, 'index'])->name('categoria');
@@ -61,4 +71,4 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     });
 
-}); // FIM DO PREFIX ADMIN
+});

@@ -154,51 +154,54 @@
             <!--end::Fullscreen Toggle-->
 
             <!--begin::User Menu Dropdown-->
+
+            @php
+            
+            $usuarioLogado = auth('admin')->user();
+            $fotoUser = $usuarioLogado && $usuarioLogado->foto ? asset('dash/assets/img/user/' . $usuarioLogado->foto_usuario) : 
+            asset('dash/assets/img/user/user.png');
+
+            @endphp
+
             <li class="nav-item dropdown user-menu">
               <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                 <img
-                  src="{{ asset('dash/assets/img/user1-128x128.jpg') }}"
+                  src="{{ $fotoUser }}"
                   class="user-image rounded-circle shadow"
-                  alt="User Image"
+                  alt="{{ $usuarioLogado->nome_usuario}}"
                 />
-                <span class="d-none d-md-inline">Alexander Pierce</span>
+                <span class="d-none d-md-inline">{{ $usuarioLogado->nome_usuario }}</span>
+
+                <br>
+
               </a>
               <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                 <!--begin::User Image-->
                 <li class="user-header text-bg-primary">
                   <img
-                    src="{{ asset('dash/assets/img/user1-128x128.jpg') }}"
+                    src="{{ asset('dash/assets/img/user/user.png') }}"
                     class="rounded-circle shadow"
                     alt="User Image"
                   />
                   <p>
-                    Alexander Pierce - Web Developer
-                    <small>Member since Nov. 2023</small>
+                    {{ $usuarioLogado->nome_usuario}}
+                    <small>{{ $usuarioLogado->email_usuario }} | {{ date('d/m/Y',strtotime($usuarioLogado->criado_em_usuario))}}</small>
                   </p>
                 </li>
                 <!--end::User Image-->
                 <!--begin::Menu Body-->
-                <li class="user-body">
-                  <!--begin::Row-->
-                  <div class="row">
-                    <div class="col-4 text-center">
-                      <a href="#">Followers</a>
-                    </div>
-                    <div class="col-4 text-center">
-                      <a href="#">Sales</a>
-                    </div>
-                    <div class="col-4 text-center">
-                      <a href="#">Friends</a>
-                    </div>
-                  </div>
-                  <!--end::Row-->
-                </li>
+          
                 <!--end::Menu Body-->
                 <!--begin::Menu Footer-->
                 <li class="user-footer">
-                  <a href="#" class="btn btn-outline-secondary">Profile</a>
-                  <a href="#" class="btn btn-outline-danger float-end">Sign out</a>
+                <a href="#" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalPerfil">Perfil</a>
+
+                  <form action="{{ route('admin.logout') }}" method="POST" class="float-end">
+                  @csrf
+                  <button type="submit" class="btn btn-outline-danger float-end">Sair</button>
+                  </form>
                 </li>
+
                 <!--end::Menu Footer-->
               </ul>
             </li>
@@ -209,3 +212,55 @@
         <!--end::Container-->
       </nav>
       <!--end::Header-->
+      
+      <div class="modal fade" id="modalPerfil" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header border-0 pb-0">
+        <h5 class="modal-title">Meu Perfil</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body text-center pt-2">
+        <div class="mb-3">
+          <img src="{{ $fotoUser }}"
+               class="rounded-circle border border-3"
+               style="width:90px; height:90px; object-fit:cover;"
+               alt="{{ $usuarioLogado->nome_usuario }}">
+        </div>
+        <h5 class="fw-semibold mb-0">{{ $usuarioLogado->nome_usuario }}</h5>
+        <p class="text-muted small mb-3">Administrador</p>
+
+        <ul class="list-group list-group-flush text-start">
+          <li class="list-group-item d-flex align-items-center gap-2">
+            <i class="bi bi-envelope text-secondary"></i>
+            <div>
+              <p class="text-muted small mb-0">Email</p>
+              <span class="fw-semibold small">{{ $usuarioLogado->email_usuario }}</span>
+            </div>
+          </li>
+          <li class="list-group-item d-flex align-items-center gap-2">
+            <i class="bi bi-calendar text-secondary"></i>
+            <div>
+              <p class="text-muted small mb-0">Membro desde</p>
+              <span class="fw-semibold small">{{ date('d/m/Y', strtotime($usuarioLogado->criado_em_usuario)) }}</span>
+            </div>
+          </li>
+          <li class="list-group-item d-flex align-items-center gap-2">
+            <i class="bi bi-shield-check text-success"></i>
+            <div>
+              <p class="text-muted small mb-0">Status</p>
+              <span class="badge bg-success-subtle text-success">Ativo</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="modal-footer border-0">
+        <button class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fechar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
