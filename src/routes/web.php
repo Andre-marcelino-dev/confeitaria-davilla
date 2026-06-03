@@ -9,7 +9,7 @@
     use Illuminate\Support\Facades\Route;
 
 
-    use App\Http\Controllers\admin\PerfilController;
+    use App\Http\Controllers\admin\UsuarioController;
     use App\Http\Controllers\admin\DashController;
     use App\Http\Controllers\admin\CategoriaController;
     use App\Http\Controllers\admin\ProdutoController;
@@ -42,12 +42,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Dashboard
         Route::get('/', [DashController::class, 'index'])->name('dash');
 
-        // Perfil
-        Route::get('/perfil', [PerfilController::class, 'index'])
-            ->name('perfil');
+         // Usuários
+    Route::resource('usuarios', \App\Http\Controllers\admin\UsuarioController::class)
+        ->parameters(['usuarios' => 'usuario']);
 
-        Route::put('/perfil', [PerfilController::class, 'update'])
-            ->name('perfil.update');
+
 
         // Categorias
         Route::get('/categoria', [CategoriaController::class, 'index'])->name('categoria');
