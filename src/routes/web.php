@@ -28,6 +28,9 @@ Route::get('/regiao', [RegiaoController::class, 'regiao'])->name('regiao.index')
 Route::get('/regiao/area/{id}', [RegiaoController::class, 'show'])->name('regiao.area');
 Route::get('/contato', [ContatoController::class, 'contato'])->name('contato');
 
+
+Route::view('/api/documentacao', 'api.documentacao')->name('api.documentacao');
+
 // Rotas do admin
 Route::prefix('admin')->name('admin.')->group(function () {
 
