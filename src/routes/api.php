@@ -8,6 +8,8 @@ use App\Http\Controllers\Api\V1\CategoriaController;
 use App\Http\Controllers\Api\V1\ProdutoController;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\ClienteController;
+use App\Http\Controllers\Api\V1\SacolaController;
+use App\Http\Controllers\Api\V1\PedidoController;
  
 Route::prefix('v1')->group(function () {
  
@@ -35,6 +37,17 @@ Route::prefix('v1')->group(function () {
         Route::patch('/cliente', [ClienteController::class, 'update']);
         Route::put('/cliente/senha', [ClienteController::class, 'updateSenha']);
         Route::post('/auth/logout', [AuthController::class, 'logout']);
+
+        // Sacola do cliente logado
+        Route::get('/sacola', [SacolaController::class, 'index']);
+        Route::post('/sacola', [SacolaController::class, 'store']);
+        Route::put('/sacola/{id}', [SacolaController::class, 'update']);
+        Route::patch('/sacola/{id}', [SacolaController::class, 'update']);
+        Route::delete('/sacola/{id}', [SacolaController::class, 'destroy']);
+
+        // Pedidos do cliente logado
+        Route::get('/pedidos', [PedidoController::class, 'index']);
+        Route::get('/pedidos/{id}', [PedidoController::class, 'show']);
     });
  
 });
