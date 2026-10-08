@@ -44,6 +44,31 @@ class ClienteController extends Controller
         ]);
     }
  
+    // POST /api/v1/cliente/foto
+    // Recebe a foto (campo "foto", multipart) e salva na mesma pasta do painel admin
+    public function updateFoto(Request $request)
+    {
+        $request->validate([
+            'foto' => 'required|image|mimes:jpeg,png,jpg,webp|max:2048',
+        ]);
+
+        $cliente = $request->user();
+
+        // Nome curto (a coluna foto_cliente aceita até 60 caracteres)
+        $arquivo = $request->file('foto');
+        $nomeArquivo = time() . '_cliente' . $cliente->id_cliente . '.' . $arquivo->extension();
+        $arquivo->move(public_path('davilla/images/cliente'), $nomeArquivo);
+
+        $cliente->foto_cliente = $nomeArquivo;
+        $cliente->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Foto atualizada com sucesso.',
+            'data' => $cliente->fresh(),
+        ]);
+    }
+
     // PUT /api/v1/cliente/senha
     public function updateSenha(Request $request)
     {

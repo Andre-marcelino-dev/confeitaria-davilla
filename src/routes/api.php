@@ -36,6 +36,7 @@ Route::prefix('v1')->group(function () {
         Route::put('/cliente', [ClienteController::class, 'update']);
         Route::patch('/cliente', [ClienteController::class, 'update']);
         Route::put('/cliente/senha', [ClienteController::class, 'updateSenha']);
+        Route::post('/cliente/foto', [ClienteController::class, 'updateFoto']);
         Route::post('/auth/logout', [AuthController::class, 'logout']);
 
         // Sacola do cliente logado
