@@ -98,10 +98,20 @@
     font-size: 0.8rem;
     text-align: center;
   }
-  /* Menu do usuário e dropdowns do topo ocupam a largura da tela */
-  .app-header .dropdown-menu-lg {
-    min-width: auto;
-    width: calc(100vw - 1rem);
-    max-width: 22rem;
+  /* Dropdowns do topo (mensagens, notificações, usuário) presos às bordas
+     da tela, para não serem cortados à esquerda */
+  .app-header .navbar-nav .dropdown-menu {
+    position: fixed;
+    top: calc(3.5rem + 1px);
+    left: 0.5rem;
+    right: 0.5rem;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    max-height: calc(100vh - 4.5rem);
+    overflow-y: auto;
+  }
+  .app-header .navbar-nav .dropdown-menu .dropdown-item {
+    white-space: normal;
   }
 }
